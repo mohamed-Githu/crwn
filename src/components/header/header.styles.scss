@@ -1,0 +1,28 @@
+.header {
+  font-size: 1.6rem;
+  height: 7rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+
+  &__logo-container {
+    height: 100%;
+    width: 7rem;
+    padding: 2.5rem;
+  }
+
+  &__options {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  &__link {
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+  }
+}

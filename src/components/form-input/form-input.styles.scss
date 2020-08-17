@@ -1,0 +1,36 @@
+.form-input {
+  margin: 4.5rem 0;
+  position: relative;
+
+  &__input {
+    width: 100%;
+    background-color: white;
+    color: gray;
+    border: none;
+    border-bottom: 1px solid currentColor;
+    font-size: 1.8rem;
+    padding: 1rem;
+    padding-left: .5rem;
+    outline: none;
+
+    &:focus ~ label {
+      color: gray;
+      top: -1.4rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  input[type='password'] {
+    letter-spacing: 0.3em;
+  }
+
+  &__label {
+    position: absolute;
+    left: .5rem;
+    top: 1rem;
+    color: black;
+    font-size: 1.6rem;
+    pointer-events: none;
+    transition: all ease .3s;
+  }
+}

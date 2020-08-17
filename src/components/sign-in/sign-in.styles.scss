@@ -1,0 +1,10 @@
+.sign-in {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+
+  &__subtitle {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+  }
+}
