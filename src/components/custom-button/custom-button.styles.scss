@@ -1,11 +1,9 @@
 .custom-button {
-  min-width: 16.5rem;
-//   width: auto;
   background-color: black;
   color: white;
   border: 1px solid currentColor;
   height: 5rem;
-  padding: 0 3.5;
+  padding: 0 3rem;
   font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
@@ -13,8 +11,18 @@
   outline: none;
   cursor: pointer;
 
+  
   &:hover {
     color: black;
     background-color: white;
+  }
+
+  &--google {
+    background-color: #4285f4;
+
+    &:hover {
+      background-color: #357ae8;
+      color: #fff;
+    }
   }
 }

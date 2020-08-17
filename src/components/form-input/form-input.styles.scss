@@ -1,5 +1,11 @@
+@mixin label {
+  color: gray;
+  top: -1.4rem;
+  font-size: 1.2rem;
+}
+
 .form-input {
-  margin: 4.5rem 0;
+  margin: 4.2rem 0;
   position: relative;
 
   &__input {
@@ -9,28 +15,29 @@
     border: none;
     border-bottom: 1px solid currentColor;
     font-size: 1.8rem;
-    padding: 1rem;
-    padding-left: .5rem;
+    padding: .5rem;
     outline: none;
 
     &:focus ~ label {
-      color: gray;
-      top: -1.4rem;
-      font-size: 1.2rem;
+      @include label()
     }
   }
 
   input[type='password'] {
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2rem;
   }
 
   &__label {
     position: absolute;
     left: .5rem;
-    top: 1rem;
+    top: .6rem;
     color: black;
     font-size: 1.6rem;
     pointer-events: none;
     transition: all ease .3s;
+
+    &--focus {
+      @include label()
+    }
   }
 }

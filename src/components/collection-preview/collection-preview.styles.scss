@@ -29,6 +29,7 @@
     padding: .5rem 0;
     cursor: pointer;
     transition: all .2s;
+    outline: none;
 
     &:hover {
       transform: scale(1.05) translateY(-3px);
