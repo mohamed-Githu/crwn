@@ -1,3 +1,8 @@
+An E-commerce website built using react and firebase in the backend, including stripe payment.
+
+Other technologies: 
+- GraphQl
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
