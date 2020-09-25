@@ -5,6 +5,7 @@ import './sign-in.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 import { signInWithGoogle } from '../../firebase/firebase.utils'
+import { withRouter } from 'react-router-dom'
 
 export class SignIn extends React.Component {
   constructor(props) {
@@ -24,6 +25,10 @@ export class SignIn extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     this.setState({ email: '', passrowd: '' })
+  }
+
+  handleSignIn = () => {
+    signInWithGoogle().then(() => this.props.history.push('/'))
   }
 
   render() {
@@ -50,7 +55,7 @@ export class SignIn extends React.Component {
           />
           <div className="sign-in__buttons">
             <CustomButton value='sign in' type='submit'/>
-            <CustomButton isGoogle={true} value='sign in with google' onClick={signInWithGoogle}/>
+            <CustomButton isGoogle={true} value='sign in with google' onClick={this.handleSignIn}/>
           </div>
         </form>
       </div>
@@ -58,4 +63,4 @@ export class SignIn extends React.Component {
   }
 }
 
-export default SignIn
+export default withRouter(SignIn)

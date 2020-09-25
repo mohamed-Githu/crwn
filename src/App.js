@@ -8,16 +8,32 @@ import Homepage from './pages/homepage/homepage.component';
 import Shop from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import Singing from './pages/signing/signing.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserDocumentProfile } from './firebase/firebase.utils';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
+    const unsubcribe = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserDocumentProfile(userAuth);
+
+        userRef.onSnapshot(snapshot => {
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          })
+        })
+      } else {
+        setCurrentUser(null);
+      }
     })
+
+    return () => unsubcribe()
+    // eslint-disable-next-line
   }, [])
+
+  console.log(currentUser);
 
   return (
     <div>
@@ -25,7 +41,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route exact path='/shop' component={Shop} />
-        <Route exact path='/signin' component={Singing} />
+        {!currentUser && <Route exact path='/signin' component={Singing} />}
       </Switch>
     </div>
   )

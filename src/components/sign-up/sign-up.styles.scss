@@ -1,0 +1,10 @@
+.sign-up {
+  width: 38rem;
+  display: flex;
+  flex-direction: column;
+
+  &__subtitle {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+  }
+}
