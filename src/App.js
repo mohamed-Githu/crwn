@@ -33,8 +33,6 @@ const App = () => {
     // eslint-disable-next-line
   }, [])
 
-  console.log(currentUser);
-
   return (
     <div>
       <Header user={currentUser} />
@@ -42,6 +40,7 @@ const App = () => {
         <Route exact path='/' component={Homepage} />
         <Route exact path='/shop' component={Shop} />
         {!currentUser && <Route exact path='/signin' component={Singing} />}
+        <Route><h1 style={{textAlign: 'center'}}>The Page You're Looking For Does Not Exict</h1></Route>
       </Switch>
     </div>
   )
