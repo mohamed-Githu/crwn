@@ -30,12 +30,6 @@
     cursor: pointer;
     transition: all .2s;
     outline: none;
-
-    &:hover {
-      transform: scale(1.05) translateY(-3px);
-      width: 7.5rem;
-      box-shadow: 0 .5rem .5rem rgba($color: gray, $alpha: .2);
-    }
   }
 
   &__items {
