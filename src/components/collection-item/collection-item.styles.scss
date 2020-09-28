@@ -23,7 +23,7 @@
     padding: 1rem .5rem;
   }
 
-  .custom-button {
+  button {
     width: 80%;
     opacity: .7;
     position: absolute;
@@ -45,7 +45,7 @@
       opacity: .7;
     }
 
-    .custom-button {
+    button {
       display: flex;
       opacity: .85;
     }
