@@ -43,7 +43,7 @@ const App = ({ setCurrentUser, currentUser }) => {
       <Header/>
       <Switch>
         <Route exact path='/' component={Homepage} />
-        <Route exact path='/shop' component={Shop} />
+        <Route path='/shop' component={Shop} />
         <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <Singing />} />
         <Route exact path='/checkout' component={Checkout} />
         <Route><h1 style={{textAlign: 'center'}}>The Page You're Looking For Does Not Exict</h1></Route>

@@ -4,11 +4,17 @@ import './collection-preview.styles.scss'
 
 import CollectionItem from '../collection-item/collection-item.component'
 
-const CollectionPreview = ({ title, items }) => (
+import { withRouter } from 'react-router-dom'
+
+const CollectionPreview = ({ title, items, history }) => (
   <div className='collection-preview'>
     <div className="collection-preview__header">
-      <h1 className="collection-preview__title">{title}</h1>
-      <button className="collection-preview__button">See All <span>&rarr;</span></button>
+      <h1 className="collection-preview__title" onClick={() => history.push(`/shop/${title}`)}>
+        {title}
+      </h1>
+      <button className="collection-preview__button" onClick={() => history.push(`/shop/${title}`)}>
+        See All <span>&rarr;</span>
+      </button>
     </div>
     <div className="collection-preview__items">
       {
@@ -20,4 +26,4 @@ const CollectionPreview = ({ title, items }) => (
   </div>
 )
 
-export default CollectionPreview
+export default withRouter(CollectionPreview);
