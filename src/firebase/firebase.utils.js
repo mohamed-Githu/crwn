@@ -19,9 +19,9 @@ const auth = firebase.auth()
 const db = firebase.firestore()
 
 const provider = new firebase.auth.GoogleAuthProvider();
-const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const signInWithGoogle = () => auth.signInWithPopup(provider)
 
-const createUserDocumentProfile = async (authUser, additionalData) => {
+export const createUserDocumentProfile = async (authUser, additionalData) => {
   if (!authUser) return;
 
   const userRef = db.doc(`users/${authUser.uid}`);
@@ -46,5 +46,38 @@ const createUserDocumentProfile = async (authUser, additionalData) => {
   return userRef;
 }
 
-export { auth, db, signInWithGoogle, createUserDocumentProfile }
+export const addCollection = async (collectionKey, arrayOfobjects) => {
+  const collectionRef = db.collection(collectionKey);
+  
+  const batch = db.batch();
+
+  arrayOfobjects.forEach(object => {
+    const documentRef = collectionRef.doc();
+    batch.set(documentRef, object)
+  })
+
+  return await batch.commit();
+}
+
+export const convertCollectionsSnapshotToMap = snapshot => {
+  const collections = snapshot.docs;
+
+  const collectionsArray = collections.map(doc => {
+    const { items, title } = doc.data();
+    return {
+      id: doc.id,
+      items,
+      title
+    }
+  })
+
+  return collectionsArray.reduce((obj, collection) => {
+    return {
+      ...obj,
+      [collection.title]: collection,
+    };
+  }, {});
+}
+
+export { auth, db }
 export default firebase;
