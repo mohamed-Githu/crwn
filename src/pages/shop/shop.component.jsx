@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './shop.styles.scss'
 
 import CollectionOverview from '../../components/collection-overview/collection-overview.component'
@@ -10,13 +10,21 @@ import { convertCollectionsSnapshotToMap, db } from '../../firebase/firebase.uti
 import { setShopData } from '../../redux/shop/shop.actions'
 import { connect } from 'react-redux'
 
+import WithSpinner from '../../components/with-spinner/with-spinner.component'
+
+const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+
 const ShopPage = ({ match, setShopData }) => {
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     const unsubscribe = () => {
       const collectionsRef = db.collection('collections');
       collectionsRef.onSnapshot(snapshot => {
         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
         setShopData(collectionsMap);
+        setIsLoading(false);
       })
     }
 
@@ -25,8 +33,12 @@ const ShopPage = ({ match, setShopData }) => {
 
   return (
   <div className="shop-page">
-    <Route exact path={`${match.path}`} component={CollectionOverview} />
-    <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />
+    <Route exact path={`${match.path}`} 
+      render={() => <CollectionOverviewWithSpinner isLoading={isLoading} />} 
+    />
+    <Route exact path={`${match.path}/:collectionId`} 
+      render={(props) => <CollectionPageWithSpinner isLoading={isLoading} {...props} />}
+    />
   </div>
 )}
 
@@ -34,4 +46,4 @@ const mapDispatchToProps = dispatch => ({
   setShopData: collectionsMap => dispatch(setShopData(collectionsMap))
 })
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default WithSpinner(connect(null, mapDispatchToProps)(ShopPage));
