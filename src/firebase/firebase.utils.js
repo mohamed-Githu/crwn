@@ -1,6 +1,6 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCUXQZT3UYAcYeRKt_cK_oK5T3sQDvPsCI",
@@ -10,16 +10,16 @@ const firebaseConfig = {
   storageBucket: "crown-e-commerce-7aae2.appspot.com",
   messagingSenderId: "1065129899169",
   appId: "1:1065129899169:web:d8c6e7186630262cb0ace0",
-  measurementId: "G-YLZWWMD17L"
+  measurementId: "G-YLZWWMD17L",
 };
 
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth()
-const db = firebase.firestore()
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => auth.signInWithPopup(provider)
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export const createUserDocumentProfile = async (authUser, additionalData) => {
   if (!authUser) return;
@@ -32,44 +32,44 @@ export const createUserDocumentProfile = async (authUser, additionalData) => {
     const createdAt = firebase.firestore.FieldValue.serverTimestamp();
 
     try {
-        await userRef.set({
+      await userRef.set({
         displayName,
         email,
         createdAt,
-        ...additionalData
-      })
+        ...additionalData,
+      });
     } catch (error) {
-      console.log('error creating user', error.message)
+      console.log("error creating user", error.message);
     }
   }
 
   return userRef;
-}
+};
 
 export const addCollection = async (collectionKey, arrayOfobjects) => {
   const collectionRef = db.collection(collectionKey);
-  
+
   const batch = db.batch();
 
-  arrayOfobjects.forEach(object => {
+  arrayOfobjects.forEach((object) => {
     const documentRef = collectionRef.doc();
-    batch.set(documentRef, object)
-  })
+    batch.set(documentRef, object);
+  });
 
   return await batch.commit();
-}
+};
 
-export const convertCollectionsSnapshotToMap = snapshot => {
+export const convertCollectionsSnapshotToMap = (snapshot) => {
   const collections = snapshot.docs;
 
-  const collectionsArray = collections.map(doc => {
+  const collectionsArray = collections.map((doc) => {
     const { items, title } = doc.data();
     return {
       id: doc.id,
       items,
-      title
-    }
-  })
+      title,
+    };
+  });
 
   return collectionsArray.reduce((obj, collection) => {
     return {
@@ -77,7 +77,7 @@ export const convertCollectionsSnapshotToMap = snapshot => {
       [collection.title]: collection,
     };
   }, {});
-}
+};
 
-export { auth, db }
+export { auth, db };
 export default firebase;
