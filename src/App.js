@@ -36,7 +36,7 @@ const App = ({ setCurrentUser, currentUser }) => {
 
     return () => unsubcribe()
     // eslint-disable-next-line
-  }, [])
+  }, [setCurrentUser])
 
   return (
     <div>

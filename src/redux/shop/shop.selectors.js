@@ -22,7 +22,7 @@ export const selectCollection = (collectionId) =>
     collections ? collections[collectionId] : null
   );
 
-export const selectIsColletionsLoaded = createSelector(
+export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
-  (shop) => !!shop.collections
+  (shop) => !!!shop.collections
 );
