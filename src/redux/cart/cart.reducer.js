@@ -7,7 +7,12 @@ const initialState = {
 }
 
 const cartRedecer = (state = initialState, action) => {
-  const { TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM } = cartAcionTypes;
+  const { TOGGLE_CART_HIDDEN,
+    ADD_ITEM,
+    CLEAR_ITEM_FROM_CART,
+    REMOVE_ITEM,
+    CLEAR_CART
+  } = cartAcionTypes;
   const { hidden, cartItems } = state;
   const { type, payload } = action;
 
@@ -31,6 +36,11 @@ const cartRedecer = (state = initialState, action) => {
         return {
           ...state,
           cartItems: removeItemFromCart(cartItems, payload)
+        }
+      case CLEAR_CART:
+        return {
+          ...state,
+          cartItems: []
         }
       default:
         return state
