@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import './App.css';
+import './App.scss';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -25,13 +25,15 @@ const App = ({ currentUser, checkUserSession }) => {
   return (
     <div>
       <Header/>
-      <Switch>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/shop' component={Shop} />
-        <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <Singing />} />
-        <Route exact path='/checkout' component={Checkout} />
-        <Route><h1 style={{textAlign: 'center'}}>The Page You're Looking For Does Not Exict</h1></Route>
-      </Switch>
+      <div className="content-wrapper">
+        <Switch>
+          <Route exact path='/' component={Homepage} />
+          <Route path='/shop' component={Shop} />
+          <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <Singing />} />
+          <Route exact path='/checkout' component={Checkout} />
+          <Route><h1 style={{textAlign: 'center'}}>The Page You're Looking For Does Not Exict</h1></Route>
+        </Switch>
+      </div>
     </div>
   )
 }

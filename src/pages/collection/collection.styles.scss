@@ -10,12 +10,19 @@
 
   .items {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
 
     & .collection-item {
       margin-bottom: 30px;
     }
+
+    @media screen and (max-width: 50em) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 25em) {
+      grid-template-columns: 1fr;
+    }
   }
 }
-  

@@ -8,10 +8,10 @@ import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
 
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item, addItem, slide }) => {
   const { imgUrl, name, price } = item;
   return (
-  <div className='collection-item'>
+  <div className={`collection-item ${slide && 'slide'}`}>
     <div className="image"
       style={{backgroundImage: `url(${imgUrl})`}}
     ></div>

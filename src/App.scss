@@ -1,0 +1,7 @@
+.content-wrapper {
+  padding: 2rem 6rem;
+
+  @media screen and (max-width: 50em) {
+    padding: 2rem 1rem;
+  }
+}

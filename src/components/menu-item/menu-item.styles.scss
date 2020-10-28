@@ -5,7 +5,7 @@
   min-width: 30%;
   flex: 1 1 auto;
   border: 1px solid black;
-  margin: 0 .75rem 1.5rem;
+  margin: 0 0.75rem 1.5rem;
   height: 24rem;
   overflow: hidden;
   cursor: pointer;
@@ -23,6 +23,10 @@
     height: 38rem;
   }
 
+  @media screen and (max-width: 31.875em) {
+    height: 20rem !important;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -32,19 +36,23 @@
     background-color: white;
     height: 9rem;
     padding: 0 2.5rem;
-    opacity: .7;
+    opacity: 0.7;
     position: absolute;
 
     .title {
       text-transform: uppercase;
       font-weight: bold;
       font-size: 2.2rem;
-      margin-bottom: .6rem;
+      margin-bottom: 0.6rem;
       color: #4a4a4a;
     }
-  
+
     .subtitle {
       font-weight: lighter;
+    }
+
+    @media screen and (max-width: 50em) {
+      padding: 0 1rem;
     }
   }
 
@@ -54,7 +62,7 @@
     }
 
     .content {
-        opacity: .9;
+      opacity: 0.9;
     }
   }
 }
