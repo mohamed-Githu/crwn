@@ -1,6 +1,5 @@
 .collection-item {
   width: 22vw;
-  margin: 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +13,7 @@
   &.slide {
     @media screen and (max-width: 56.25em) {
       min-width: 25rem;
+      margin: 0 0.5rem;
     }
   }
 
