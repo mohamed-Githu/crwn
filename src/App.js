@@ -27,12 +27,14 @@ const App = ({ currentUser, checkUserSession }) => {
       <Header/>
       <div className="content-wrapper">
         <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={Homepage} />
-            <Route path='/shop' component={Shop} />
-            <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <Singing />} />
-            <Route exact path='/checkout' component={Checkout} />
-          </Suspense>
+          <ErrorBounday>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path='/' component={Homepage} />
+              <Route path='/shop' component={Shop} />
+              <Route exact path='/signin' render={() => currentUser ? <Redirect to='/' /> : <Singing />} />
+              <Route exact path='/checkout' component={Checkout} />
+            </Suspense>
+          </ErrorBounday>
           <Route><h1 style={{textAlign: 'center'}}>The Page You're Looking For Does Not Exict</h1></Route>
         </Switch>
       </div>
