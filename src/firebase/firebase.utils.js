@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUXQZT3UYAcYeRKt_cK_oK5T3sQDvPsCI",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "crown-e-commerce-7aae2.firebaseapp.com",
   databaseURL: "https://crown-e-commerce-7aae2.firebaseio.com",
   projectId: "crown-e-commerce-7aae2",
